@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="adminCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="adminCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="adminCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">教练管理</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">主页</a></li>
+                    <li class="breadcrumb-item active">教练管理</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        教练信息表
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                            <tr>
+                                <th>工号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>年龄</th>
+                                <th>电话</th>
+                                <th>薪资</th>
+                                <th>身份证号码</th>
+                                <th>密码</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="emp:${coachList}">
+                                <td th:text="${emp.coachID}">工号</td>
+                                <td th:text="${emp.coachName}">姓名</td>
+                                <td th:text="${emp.coachGender}">性别</td>
+                                <td th:text="${emp.coachAge}">年龄</td>
+                                <td th:text="${emp.coachphone}">电话</td>
+                                <td th:text="${emp.coachsalary}">薪资</td>
+                                <td th:text="${emp.coachnumber}">身份证号码</td>
+                                <td th:text="${emp.coachPassword}">密码</td>
+                                <td>
+                                    <a th:href="@{/employee/toUpdateEmployee(employeeAccount=${emp.coachID})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="编辑">
+                                    </a>
+                                    <a th:href="@{/employee/delEmployee(employeeAccount=${emp.coachID})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-danger"
+                                               onclick="return del()" value="解雇">
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:20px;margin-bottom:20px">
+                    <a th:href="@{/employee/toAddEmployee}">
+                        <input type="button" class="btn btn-outline-success" value="添加教练信息">
+                    </a>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="adminCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="adminCommon::common-scripts"></div>
+<script>
+    function del() {
+        let msg = "确定要解雇吗？";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

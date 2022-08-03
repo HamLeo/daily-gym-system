@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="coachCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="coachCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="coachCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">个人信息</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/toCoachMain}">主页</a></li>
+                    <li class="breadcrumb-item active">个人信息</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <table class="table table-hover">
+                        <tr>
+                            <td text-align="center">教练账号：</td>
+                            <!--/*@thymesVar id="coachList" type=""*/-->
+                            <td th:text="${coach.coachID}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">姓名：</td>
+                            <td th:text="${coach.coachName}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">性别：</td>
+                            <td th:text="${coach.coachGender}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">年龄：</td>
+                            <td th:text="${coach.coachAge}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">电话: </td>
+                            <td th:text="${coach.coachphone}"></td>
+                        </tr>
+
+                    </table>
+                    <div style="text-align:center;margin-bottom:15px">
+                        <a th:href="@{/coach/toUpdateCoachInfo}">
+                            <input type="button" class="btn btn-outline-primary" value="编辑个人信息">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="CoachCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="CoachCommon::common-scripts"></div>
+</body>
+</html>

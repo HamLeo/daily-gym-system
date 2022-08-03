@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="coachCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="coachCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="coachCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">编辑个人信息</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/toCoachMain}">主页</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/coach/toCoachInfo}">个人信息</a></li>
+                    <li class="breadcrumb-item active">编辑个人信息</li>
+                </ol>
+
+                <div class="card mb-4">
+
+                    <form th:action="@{/coach/updateCoach}" method="post" name="updateForm"
+                          onsubmit="return beforeSubmit(this)">
+
+                        <table class="table table-hover">
+                            <tr>
+                                <td text-align="center">教练账号：</td>
+                                <td><input type="text" class="form-control" readonly="readonly"
+                                               th:value="${coach.coachID}" name="coachID">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">姓名：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachName}"
+                                           name="coachName"></td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">密码：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachPassword}"
+                                           name="coachPassword">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">性别：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachGender}"
+                                           name="coachGender">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">年龄：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachAge}"
+                                           name="coachAge">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">身份证号：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachnumber}"
+                                           name="coachnumber">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">电话号码：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachphone}"
+                                           name="coachphone">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">工资：</td>
+                                <td><input type="text" class="form-control" th:value="${coach.coachsalary}"
+                                           name="coachsalary">
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div style="text-align:center;margin-bottom:15px">
+                            <input type="submit" class="btn btn-outline-success" value="确认修改">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="coachCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="coachCommon::common-scripts"></div>
+
+</body>
+</html>

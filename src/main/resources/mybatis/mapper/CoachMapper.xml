@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzh.mapper.CoachMapper">
+    <select id="findAll" resultType="coach">
+        SELECT *
+        FROM coach
+    </select>
+    <select id="selectBycoachID" resultType="coach">
+        SELECT *
+        FROM coach
+        WHERE coach_id = #{coachID}
+        AND coach_password = #{coachPassword}
+    </select>
+    <select id="selectBycoachIDAndPassword" resultType="coach">
+        SELECT *
+        FROM coach
+        WHERE coach_id = #{coachID}
+        AND coach_password = #{coachPassword}
+    </select>
+    <delete id="deleteBycoachID" parameterType="java.lang.Integer">
+        DELETE
+        FROM coach
+        WHERE coach_id = #{coachID}
+    </delete>
+    <insert id=" insertCoach" parameterType="coach">
+        INSERT INTO coach (coach_id, coach_password,  coach_name,
+                              coach_sex, coach_age,  coach_number, coach_phone,coach_salary)
+        VALUES (#{coachID}, #{coachPassword}, #{coachName},
+                #{coachGender}, #{coachAge}, #{coachnumber}, #{coachphone}, #{coachsalary})
+    </insert>
+    <update id="updateCoachBycoachID" parameterType="coach">
+        UPDATE coach
+        SET coach_id = #{coachID},
+            coach_password    = #{coachPassword},
+            coach_name  = #{coachName},
+            coach_sex     = #{coachGender},
+            coach_age          = #{coachAge},
+            coach_number = #{coachnumber},
+            coach_phone  = #{coachphone},
+            coach_salary = #{coachsalary}
+        WHERE coach_id = #{coachID}
+    </update>
+    <select id="selectTotalCount" parameterType="java.lang.Integer" resultType="coach">
+        SELECT *
+        FROM coach
+        WHERE coach_id = #{coachID}
+    </select>
+</mapper>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="adminCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="adminCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="adminCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">编辑健身器材</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">主页</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/equipment/selequipment}">健身器材管理</a></li>
+                    <li class="breadcrumb-item active">编辑健身器材</li>
+                </ol>
+
+                <div class="card mb-4">
+
+                    <form th:action="@{/equipment/updateEquipment}" method="post" name="updateForm">
+                        <div th:each="equipment:${equipmentList}">
+                            <table class="table table-hover">
+                                <tr>
+                                    <td text-align="center">健身器材编号：</td>
+                                    <td><!--/*@thymesVar id="equipmentID" type=""*/-->
+                                    <input type="text" class="form-control" readonly="readonly"
+                                               th:value="${equipment.equipmentId}" name="equipmentID">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td text-align="center">健身器材名称：</td>
+                                    <td><input type="text" class="form-control" th:value="${equipment.equipmentName}"
+                                               name="equipmentname"></td>
+                                </tr>
+                                <tr>
+                                    <td text-align="center">购买时间：</td>
+                                    <td><input type="text" class="form-control" readonly="readonly"
+                                               th:value="${equipment.equipmentTime}" name="equipmentTime">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td text-align="center">购买金额：</td>
+                                    <td><input type="text" class="form-control" th:value="${equipment.equipmentCost}"
+                                               name="equipmentCost">
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="text-align:center;margin-bottom:15px">
+                                <input type="submit" class="btn btn-outline-success" value="确认修改">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="adminCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="adminCommon::common-scripts"></div>
+<script type="text/javascript">
+    function beforeSubmit(updateForm) {
+        return true;
+    }
+</script>
+</body>
+</html>

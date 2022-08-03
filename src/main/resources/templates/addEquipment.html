@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="adminCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="adminCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="adminCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">添加健身器材</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">主页</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/equipment/selEquipment}">健身器材管理</a></li>
+                    <li class="breadcrumb-item active">添加健身器材</li>
+                </ol>
+
+                <div class="card mb-4">
+
+                    <form th:action="@{/equipment/addEquipment}" method="post" name="addForm"
+                          onsubmit="return beforeSubmit(this)">
+                        <table class="table table-hover">
+                            <tr>
+                                <td text-align="center">健身器材编号：</td>
+                                <td><input type="text" class="form-control" placeholder="健身器材编号" name="equipmentId"></td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">健身器材名称：</td>
+                                <td><input type="text" class="form-control" placeholder="健身器材名称" name="equipmentName"></td>
+                            </tr>
+
+                            <tr>
+                                <td text-align="center">健身器材添置时间：</td>
+                                <td><input type="text" class="form-control" placeholder="健身器材添置时间由系统自动生成" name="equipmentTime"
+                                           disabled="disabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td text-align="center">健身器材金额：</td>
+                                <td><input type="text" class="form-control" placeholder="健身器材金额" name="equipmentCost">
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="text-align:center;margin-top:20px;margin-bottom:20px">
+                            <input type="submit" class="btn btn-outline-success" value="添加">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="adminCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="adminCommon::common-scripts"></div>
+<script type="text/javascript">
+    function beforeSubmit(addForm) {
+        if (addForm.equipmentId.value == "") {
+        alert("请输入健身器材编号！")
+        return false;
+    }
+        if (addForm.equipmentname.value == "") {
+            alert("请输入健身器材名称！")
+            return false;
+        }
+
+        // if (addForm.equipmenttime.value == "") {
+        //     alert("请输入健身器材添置时间！")
+        //     return false;
+        // }
+        if (addForm.equipmentCost.value == "")
+        {
+            alert("请输入健身器材金额！")
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

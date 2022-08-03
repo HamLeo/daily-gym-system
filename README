@@ -1,0 +1,29 @@
+# **daily-gym-system 健身房后台管理系统**
+
+本项目是使用spring boot开发 SSM框架+Mysql+Thymeleaf的一款健身房后台管理系统
+
+## 一.项目介绍
+
+#### 1.项目实体
+
+实体包括管理员(admin)，课程报名表(class_order)，课程信息表(class_table)，教练(coach)，员工(employee)，器材(equipment)，会员(member)
+
+#### 2.技术框架
+项目构建工具：Maven
+
+数据库框架：Mybatis
+
+数据库：Mysql
+
+Web框架：Spring + SpringMVC + SpringBoot
+
+模板引擎：Thymeleaf
+
+前端模板：bootstrap（https://startbootstrap.com/template/sb-admin）
+
+#### 3.开发环境
+IDE：IDEA 2019.3.3x
+
+JDK：1.8
+
+Mysql：5.7.17

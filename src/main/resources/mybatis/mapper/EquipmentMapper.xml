@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzh.mapper.EquipmentMapper">
+
+    <select id="findAll" resultType="equipment">
+        SELECt *
+        FROM equipment
+    </select>
+
+    <delete id="deleteByEquipmentId" parameterType="java.lang.Integer">
+        DELETE
+        FROM equipment
+        WHERE equipment_id = #{equipmentId}
+    </delete>
+
+    <insert id="insertEquipment" parameterType="equipment">
+        INSERT INTO equipment (equipment_id, equipment_name, equipment_time, equipment_cost)
+        VALUES (#{equipmentId}, #{equipmentName}, #{equipmentTime}, #{equipmentCost})
+    </insert>
+
+    <update id="updateEquipmentByEquipmentId" parameterType="equipment">
+        UPDATE equipment
+        SET equipment_name = #{equipmentName},
+            equipment_cost = #{equipmentCost}
+        WHERE equipment_id = #{equipmentId}
+    </update>
+
+    <select id="selectByEquipmentId" parameterType="java.lang.Integer" resultType="equipment">
+        SELECT *
+        FROM equipment
+        WHERE equipment_id = #{equipmentId}
+    </select>
+
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM equipment
+    </select>
+
+</mapper>
